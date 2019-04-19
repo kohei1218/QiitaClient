@@ -16,6 +16,7 @@
 		5518A6C9226A4E36004CE369 /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5518A6C7226A4E36004CE369 /* NSObject+Extension.swift */; };
 		5518A6CA226A4E36004CE369 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5518A6C8226A4E36004CE369 /* String+Extension.swift */; };
 		5518A6CD226A4E98004CE369 /* Applicable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5518A6CC226A4E98004CE369 /* Applicable.swift */; };
+		5518A6D2226A4FFF004CE369 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5518A6D1226A4FFF004CE369 /* TimeLineViewController.swift */; };
 		A138A6FA7A7F386ADF7FDA71 /* Pods_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E31A28E2D7360F1B22674B /* Pods_QiitaClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		5518A6C7226A4E36004CE369 /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		5518A6C8226A4E36004CE369 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		5518A6CC226A4E98004CE369 /* Applicable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Applicable.swift; sourceTree = "<group>"; };
+		5518A6D1226A4FFF004CE369 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		9A851A0BF3CEB477126193CD /* Pods-QiitaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiitaClient.release.xcconfig"; path = "Target Support Files/Pods-QiitaClient/Pods-QiitaClient.release.xcconfig"; sourceTree = "<group>"; };
 		BA7FDB4539BB3B2AAF58094D /* Pods-QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiitaClient.debug.xcconfig"; path = "Target Support Files/Pods-QiitaClient/Pods-QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,11 +88,10 @@
 		5518A6B0226A4C14004CE369 /* QiitaClient */ = {
 			isa = PBXGroup;
 			children = (
+				5518A6CE226A4FBB004CE369 /* View */,
 				5518A6CB226A4E98004CE369 /* Util */,
 				5518A6C6226A4E36004CE369 /* Extension */,
 				5518A6B1226A4C14004CE369 /* AppDelegate.swift */,
-				5518A6B3226A4C14004CE369 /* ViewController.swift */,
-				5518A6B5226A4C14004CE369 /* Main.storyboard */,
 				5518A6BB226A4C19004CE369 /* Assets.xcassets */,
 				5518A6BD226A4C19004CE369 /* LaunchScreen.storyboard */,
 				5518A6C0226A4C19004CE369 /* Info.plist */,
@@ -114,6 +115,32 @@
 				5518A6CC226A4E98004CE369 /* Applicable.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		5518A6CE226A4FBB004CE369 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5518A6D0226A4FE7004CE369 /* TimeLine */,
+				5518A6CF226A4FDD004CE369 /* Main */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5518A6CF226A4FDD004CE369 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5518A6B3226A4C14004CE369 /* ViewController.swift */,
+				5518A6B5226A4C14004CE369 /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		5518A6D0226A4FE7004CE369 /* TimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				5518A6D1226A4FFF004CE369 /* TimeLineViewController.swift */,
+			);
+			path = TimeLine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +260,7 @@
 			files = (
 				5518A6B4226A4C14004CE369 /* ViewController.swift in Sources */,
 				5518A6BA226A4C14004CE369 /* QiitaClient.xcdatamodeld in Sources */,
+				5518A6D2226A4FFF004CE369 /* TimeLineViewController.swift in Sources */,
 				5518A6CD226A4E98004CE369 /* Applicable.swift in Sources */,
 				5518A6B2226A4C14004CE369 /* AppDelegate.swift in Sources */,
 				5518A6CA226A4E36004CE369 /* String+Extension.swift in Sources */,
