@@ -18,6 +18,7 @@
 		5518A6CD226A4E98004CE369 /* Applicable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5518A6CC226A4E98004CE369 /* Applicable.swift */; };
 		5518A6D2226A4FFF004CE369 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5518A6D1226A4FFF004CE369 /* TimeLineViewController.swift */; };
 		5518A6D7226A5082004CE369 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5518A6D6226A5082004CE369 /* Article.swift */; };
+		5518A6D9226A50E4004CE369 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5518A6D8226A50E4004CE369 /* Api.swift */; };
 		A138A6FA7A7F386ADF7FDA71 /* Pods_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E31A28E2D7360F1B22674B /* Pods_QiitaClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		5518A6CC226A4E98004CE369 /* Applicable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Applicable.swift; sourceTree = "<group>"; };
 		5518A6D1226A4FFF004CE369 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		5518A6D6226A5082004CE369 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		5518A6D8226A50E4004CE369 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		9A851A0BF3CEB477126193CD /* Pods-QiitaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiitaClient.release.xcconfig"; path = "Target Support Files/Pods-QiitaClient/Pods-QiitaClient.release.xcconfig"; sourceTree = "<group>"; };
 		BA7FDB4539BB3B2AAF58094D /* Pods-QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiitaClient.debug.xcconfig"; path = "Target Support Files/Pods-QiitaClient/Pods-QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +152,7 @@
 		5518A6D4226A5047004CE369 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				5518A6D8226A50E4004CE369 /* Api.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5518A6D9226A50E4004CE369 /* Api.swift in Sources */,
 				5518A6B4226A4C14004CE369 /* ViewController.swift in Sources */,
 				5518A6BA226A4C14004CE369 /* QiitaClient.xcdatamodeld in Sources */,
 				5518A6D2226A4FFF004CE369 /* TimeLineViewController.swift in Sources */,

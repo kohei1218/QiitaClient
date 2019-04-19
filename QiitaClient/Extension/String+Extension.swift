@@ -10,7 +10,12 @@ import UIKit
 
 extension String {
     
+    var urlEscaped: String {
+        return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+    }
+    
     func toUrl() -> URL {
         return URL(string: self)!
     }
+    
 }
