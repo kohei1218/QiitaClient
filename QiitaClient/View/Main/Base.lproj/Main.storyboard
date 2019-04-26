@@ -29,7 +29,7 @@
         <!--Item 1-->
         <scene sceneID="Shd-mN-J3i">
             <objects>
-                <viewController id="bel-3t-lgQ" customClass="TimeLineViewController" customModule="rxSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bel-3t-lgQ" customClass="TimeLineViewController" customModule="QiitaClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VrF-Jm-nLc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,6 +37,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3H2-ai-SK4">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="bel-3t-lgQ" id="PB6-j1-g2l"/>
+                                    <outlet property="delegate" destination="bel-3t-lgQ" id="HM3-Id-cYs"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -57,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="406" y="-425"/>
         </scene>
-        <!--Tab View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="58W-mW-yR7">
             <objects>
-                <tabBarController id="Oqp-As-CBZ" customClass="TabViewController" customModule="rxSample" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="Oqp-As-CBZ" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XXG-08-m9h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

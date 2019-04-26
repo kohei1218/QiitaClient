@@ -21,7 +21,7 @@ class TimeLineViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.registerNib(type: CustomViewCell.self)
         decoder.dateDecodingStrategy = .iso8601
         provider.rx
             .request(Qiita.GetArticles(page: 1, perPage: 20))
@@ -35,24 +35,22 @@ class TimeLineViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        articles
-            .bind(to: tableView.rx.items) { tableView, row, element in
-                let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-                return cell
-            }
-            .disposed(by: disposeBag)
+        articles.subscribe(onNext: { [unowned self] (article) in
+            self.tableView.reloadData()
+        }).disposed(by: disposeBag)
+        
+    }
+}
+
+extension TimeLineViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return articles.value.count
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: CustomViewCell = CustomViewCell.dequeue(from: tableView, for: indexPath, with: .init(article: articles.value[indexPath.item]))
+        return cell
+    }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
