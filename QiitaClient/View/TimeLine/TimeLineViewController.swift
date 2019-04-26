@@ -10,13 +10,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Moya
+import IHProgressHUD
 
 class TimeLineViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private let provider = MoyaProvider<Qiita.GetArticles>()
     private let decoder = JSONDecoder()
-    private let articles: BehaviorRelay<Article> = BehaviorRelay(value: [])
     private let viewModel = TimeLineViewModel()
     private let perPage = 20
     private var page = 1
@@ -24,6 +24,13 @@ class TimeLineViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.isLoading.subscribe(onNext: { (isLoading) in
+            if isLoading {
+                IHProgressHUD.show()
+            } else {
+                IHProgressHUD.dismiss()
+            }
+        }).disposed(by: disposeBag)
         tableView.registerNib(type: CustomViewCell.self)
         decoder.dateDecodingStrategy = .iso8601
         request(page: page)
@@ -33,6 +40,7 @@ class TimeLineViewController: UIViewController {
     }
     
     private func request(page: Int) {
+        viewModel.isLoading.accept(true)
         provider
             .rx
             .request(Qiita.GetArticles(page: page, perPage: perPage))
@@ -40,7 +48,9 @@ class TimeLineViewController: UIViewController {
             .map(Article.self, atKeyPath: "article", using: decoder, failsOnEmptyData: false)
             .subscribe(onSuccess: { (article) in
                 self.viewModel.articles.accept(article)
-            }) { (error) in
+                self.viewModel.isLoading.accept(false)
+            }) { [unowned self] (error) in
+                self.viewModel.isLoading.accept(false)
                 print("error:", error)
         }.disposed(by: disposeBag)
     }
@@ -48,11 +58,11 @@ class TimeLineViewController: UIViewController {
 
 extension TimeLineViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles.value.count
+        return viewModel.articles.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CustomViewCell = CustomViewCell.dequeue(from: tableView, for: indexPath, with: .init(article: articles.value[indexPath.item]))
+        let cell: CustomViewCell = CustomViewCell.dequeue(from: tableView, for: indexPath, with: .init(article: viewModel.articles.value[indexPath.item]))
         return cell
     }
     

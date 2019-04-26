@@ -12,5 +12,6 @@ target 'QiitaClient' do
   pod 'Kingfisher'
   pod 'Instantiate'
   pod 'InstantiateStandard'
+  pod 'IHProgressHUD'
 
 end
