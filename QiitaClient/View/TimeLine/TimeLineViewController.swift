@@ -21,6 +21,11 @@ class TimeLineViewController: UIViewController {
     private let perPage = 20
     private var page = 1
     
+    private enum Section: CaseIterable {
+        case item
+        case pagination
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +37,8 @@ class TimeLineViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         tableView.registerNib(type: CustomViewCell.self)
+        tableView.registerNib(type: PagingCell.self)
+        tableView.isHidden = true
         decoder.dateDecodingStrategy = .iso8601
         request(page: page)
         viewModel.articles.subscribe(onNext: { [unowned self] (articles) in
@@ -49,6 +56,8 @@ class TimeLineViewController: UIViewController {
             .subscribe(onSuccess: { (article) in
                 self.viewModel.articles.accept(article)
                 self.viewModel.isLoading.accept(false)
+                self.page += 1
+                self.tableView.isHidden = false
             }) { [unowned self] (error) in
                 self.viewModel.isLoading.accept(false)
                 print("error:", error)
@@ -57,14 +66,38 @@ class TimeLineViewController: UIViewController {
 }
 
 extension TimeLineViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Section.allCases.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.articles.value.count
+        let section = Section.allCases[section]
+        switch section  {
+        case .item:
+            return viewModel.articles.value.count
+        case .pagination:
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CustomViewCell = CustomViewCell.dequeue(from: tableView, for: indexPath, with: .init(article: viewModel.articles.value[indexPath.item]))
-        return cell
+        let section = Section.allCases[indexPath.section]
+        switch  section {
+        case .item:
+            let cell: CustomViewCell = CustomViewCell.dequeue(from: tableView, for: indexPath, with: .init(article: viewModel.articles.value[indexPath.item]))
+            return cell
+        case .pagination:
+            return PagingCell.dequeue(from: tableView, for: indexPath)
+        }
     }
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        switch Section.allCases[indexPath.section] {
+        case .item:
+            break
+        case .pagination:
+            request(page: page)
+        }
+    }
     
 }
