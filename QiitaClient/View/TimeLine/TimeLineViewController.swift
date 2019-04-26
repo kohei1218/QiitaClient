@@ -17,28 +17,32 @@ class TimeLineViewController: UIViewController {
     private let provider = MoyaProvider<Qiita.GetArticles>()
     private let decoder = JSONDecoder()
     private let articles: BehaviorRelay<Article> = BehaviorRelay(value: [])
+    private let viewModel = TimeLineViewModel()
+    private let perPage = 20
+    private var page = 1
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(type: CustomViewCell.self)
         decoder.dateDecodingStrategy = .iso8601
-        provider.rx
-            .request(Qiita.GetArticles(page: 1, perPage: 20))
-            .filterSuccessfulStatusCodes()
-            .map(Article.self, atKeyPath: "articles", using: decoder, failsOnEmptyData: false)
-            .subscribe(onSuccess: { (article) in
-                print("articles:", article)
-                self.articles.accept(article)
-            }) { (error) in
-                print("error:", error)
-            }
-            .disposed(by: disposeBag)
-        
-        articles.subscribe(onNext: { [unowned self] (article) in
+        request(page: page)
+        viewModel.articles.subscribe(onNext: { [unowned self] (articles) in
             self.tableView.reloadData()
         }).disposed(by: disposeBag)
-        
+    }
+    
+    private func request(page: Int) {
+        provider
+            .rx
+            .request(Qiita.GetArticles(page: page, perPage: perPage))
+            .filterSuccessfulStatusAndRedirectCodes()
+            .map(Article.self, atKeyPath: "article", using: decoder, failsOnEmptyData: false)
+            .subscribe(onSuccess: { (article) in
+                self.viewModel.articles.accept(article)
+            }) { (error) in
+                print("error:", error)
+        }.disposed(by: disposeBag)
     }
 }
 
