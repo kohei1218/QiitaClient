@@ -24,6 +24,7 @@
 		555E79AA22729453001C1E30 /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E79A922729453001C1E30 /* TimeLineViewModel.swift */; };
 		555E79AD22729CFA001C1E30 /* PagingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E79AB22729CFA001C1E30 /* PagingCell.swift */; };
 		555E79AE22729CFA001C1E30 /* PagingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 555E79AC22729CFA001C1E30 /* PagingCell.xib */; };
+		555E79B2227588C5001C1E30 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E79B1227588C5001C1E30 /* WebViewController.swift */; };
 		A138A6FA7A7F386ADF7FDA71 /* Pods_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E31A28E2D7360F1B22674B /* Pods_QiitaClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		555E79A922729453001C1E30 /* TimeLineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewModel.swift; sourceTree = "<group>"; };
 		555E79AB22729CFA001C1E30 /* PagingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCell.swift; sourceTree = "<group>"; };
 		555E79AC22729CFA001C1E30 /* PagingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PagingCell.xib; sourceTree = "<group>"; };
+		555E79B1227588C5001C1E30 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		9A851A0BF3CEB477126193CD /* Pods-QiitaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiitaClient.release.xcconfig"; path = "Target Support Files/Pods-QiitaClient/Pods-QiitaClient.release.xcconfig"; sourceTree = "<group>"; };
 		BA7FDB4539BB3B2AAF58094D /* Pods-QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiitaClient.debug.xcconfig"; path = "Target Support Files/Pods-QiitaClient/Pods-QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +138,7 @@
 		5518A6CE226A4FBB004CE369 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				555E79B022758889001C1E30 /* WebView */,
 				5518A6D0226A4FE7004CE369 /* TimeLine */,
 				5518A6CF226A4FDD004CE369 /* Main */,
 			);
@@ -178,6 +181,14 @@
 				5518A6D6226A5082004CE369 /* Article.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		555E79B022758889001C1E30 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				555E79B1227588C5001C1E30 /* WebViewController.swift */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +319,7 @@
 				5518A6B2226A4C14004CE369 /* AppDelegate.swift in Sources */,
 				5518A6CA226A4E36004CE369 /* String+Extension.swift in Sources */,
 				555E79AA22729453001C1E30 /* TimeLineViewModel.swift in Sources */,
+				555E79B2227588C5001C1E30 /* WebViewController.swift in Sources */,
 				5518A6C9226A4E36004CE369 /* NSObject+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

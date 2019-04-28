@@ -16,6 +16,5 @@ class PagingCell: UITableViewCell, NibType, Reusable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        activityIndicator.startAnimating()
     }
 }

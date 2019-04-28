@@ -15,11 +15,7 @@ import IHProgressHUD
 class TimeLineViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
-    private let provider = MoyaProvider<Qiita.GetArticles>()
-    private let decoder = JSONDecoder()
     private let viewModel = TimeLineViewModel()
-    private let perPage = 20
-    private var page = 1
     
     private enum Section: CaseIterable {
         case item
@@ -31,37 +27,23 @@ class TimeLineViewController: UIViewController {
         super.viewDidLoad()
         viewModel.isLoading.subscribe(onNext: { (isLoading) in
             if isLoading {
-                IHProgressHUD.show()
+                if self.viewModel.page == 1 {
+                    IHProgressHUD.show()
+                }
             } else {
                 IHProgressHUD.dismiss()
             }
         }).disposed(by: disposeBag)
+        
+        viewModel.articles.subscribe(onNext: { [unowned self] (articles) in
+            self.tableView.isHidden = false
+            self.tableView.reloadData()
+        }).disposed(by: disposeBag)
+        
         tableView.registerNib(type: CustomViewCell.self)
         tableView.registerNib(type: PagingCell.self)
         tableView.isHidden = true
-        decoder.dateDecodingStrategy = .iso8601
-        request(page: page)
-        viewModel.articles.subscribe(onNext: { [unowned self] (articles) in
-            self.tableView.reloadData()
-        }).disposed(by: disposeBag)
-    }
-    
-    private func request(page: Int) {
-        viewModel.isLoading.accept(true)
-        provider
-            .rx
-            .request(Qiita.GetArticles(page: page, perPage: perPage))
-            .filterSuccessfulStatusAndRedirectCodes()
-            .map(Article.self, atKeyPath: "article", using: decoder, failsOnEmptyData: false)
-            .subscribe(onSuccess: { (article) in
-                self.viewModel.articles.accept(article)
-                self.viewModel.isLoading.accept(false)
-                self.page += 1
-                self.tableView.isHidden = false
-            }) { [unowned self] (error) in
-                self.viewModel.isLoading.accept(false)
-                print("error:", error)
-        }.disposed(by: disposeBag)
+        viewModel.request(page: viewModel.page)
     }
 }
 
@@ -77,7 +59,7 @@ extension TimeLineViewController: UITableViewDataSource, UITableViewDelegate {
         case .item:
             return viewModel.articles.value.count
         case .pagination:
-            return 1
+            return viewModel.isLoading.value ? 0 : 1
         }
     }
     
@@ -88,15 +70,17 @@ extension TimeLineViewController: UITableViewDataSource, UITableViewDelegate {
             let cell: CustomViewCell = CustomViewCell.dequeue(from: tableView, for: indexPath, with: .init(article: viewModel.articles.value[indexPath.item]))
             return cell
         case .pagination:
-            return PagingCell.dequeue(from: tableView, for: indexPath)
+            let cell = PagingCell.dequeue(from: tableView, for: indexPath)
+            cell.activityIndicator.startAnimating()
+            return cell
         }
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch Section.allCases[indexPath.section] {
         case .item:
-            break
+            return
         case .pagination:
-            request(page: page)
+            viewModel.request(page: viewModel.page)
         }
     }
     
