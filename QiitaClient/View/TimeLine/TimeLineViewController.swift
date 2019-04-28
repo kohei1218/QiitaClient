@@ -25,6 +25,7 @@ class TimeLineViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "タイムライン"
         viewModel.isLoading.subscribe(onNext: { (isLoading) in
             if isLoading {
                 if self.viewModel.page == 1 {
@@ -75,12 +76,26 @@ extension TimeLineViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch Section.allCases[indexPath.section] {
         case .item:
             return
         case .pagination:
             viewModel.request(page: viewModel.page)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        switch Section.allCases[indexPath.section] {
+        case .item:
+            let webView = WebViewController.instantiate(with: .init(url: viewModel.articles.value[indexPath.item].url.toUrl()))
+            self.navigationController?.pushViewController(webView, animated: true)
+        case .pagination:
+            break
         }
     }
     

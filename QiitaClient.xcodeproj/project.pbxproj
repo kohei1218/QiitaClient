@@ -25,6 +25,7 @@
 		555E79AD22729CFA001C1E30 /* PagingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E79AB22729CFA001C1E30 /* PagingCell.swift */; };
 		555E79AE22729CFA001C1E30 /* PagingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 555E79AC22729CFA001C1E30 /* PagingCell.xib */; };
 		555E79B2227588C5001C1E30 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E79B1227588C5001C1E30 /* WebViewController.swift */; };
+		555E79B42275953B001C1E30 /* WebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555E79B32275953B001C1E30 /* WebViewController.storyboard */; };
 		A138A6FA7A7F386ADF7FDA71 /* Pods_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E31A28E2D7360F1B22674B /* Pods_QiitaClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		555E79AB22729CFA001C1E30 /* PagingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCell.swift; sourceTree = "<group>"; };
 		555E79AC22729CFA001C1E30 /* PagingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PagingCell.xib; sourceTree = "<group>"; };
 		555E79B1227588C5001C1E30 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		555E79B32275953B001C1E30 /* WebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
 		9A851A0BF3CEB477126193CD /* Pods-QiitaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiitaClient.release.xcconfig"; path = "Target Support Files/Pods-QiitaClient/Pods-QiitaClient.release.xcconfig"; sourceTree = "<group>"; };
 		BA7FDB4539BB3B2AAF58094D /* Pods-QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiitaClient.debug.xcconfig"; path = "Target Support Files/Pods-QiitaClient/Pods-QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				555E79B1227588C5001C1E30 /* WebViewController.swift */,
+				555E79B32275953B001C1E30 /* WebViewController.storyboard */,
 			);
 			path = WebView;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				555E79B42275953B001C1E30 /* WebViewController.storyboard in Resources */,
 				555E79AE22729CFA001C1E30 /* PagingCell.xib in Resources */,
 				5518A6BF226A4C19004CE369 /* LaunchScreen.storyboard in Resources */,
 				5518A6DD226A5163004CE369 /* CustomViewCell.xib in Resources */,

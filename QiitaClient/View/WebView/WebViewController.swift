@@ -7,24 +7,29 @@
 //
 
 import UIKit
+import WebKit
+import Instantiate
+import InstantiateStandard
 
-class WebViewController: UIViewController {
+class WebViewController: UIViewController, StoryboardInstantiatable {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    @IBOutlet weak var webView: WKWebView!
+    var request: URLRequest!
+    
+    func inject(_ dependency: WebViewController.Dependency) {
+        self.request = URLRequest(url: dependency.url)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    struct Dependency {
+        var url: URL
     }
-    */
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        webView.load(request)
+    }
 }
